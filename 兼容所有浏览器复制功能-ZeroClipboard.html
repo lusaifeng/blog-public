@@ -1,133 +1,687 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
-  <meta charset="utf-8">
-  
-  <title>兼容所有浏览器复制功能-ZeroClipboard | 个人博客 | 博客</title>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
 
   
-  <meta name="author" content="lucy">
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
   
 
   
-  <meta name="description" content="前端工程师记录自己工作中学习到的小知识">
+    
+    
   
 
   
-  
-  <meta name="keywords" content="兼容 ZeroClipboard">
-  
-
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <meta property="og:title" content="兼容所有浏览器复制功能-ZeroClipboard"/>
-
-  <meta property="og:site_name" content="个人博客"/>
 
   
-  <meta property="og:image" content="/favicon.ico"/>
+
   
 
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="个人博客" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="兼容,ZeroClipboard," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="问题除了IE之外的浏览器不支持js复制功能。
+
+原因上古时期流传下来的鼠标点击就能复制某段内容的代码是window.clipboardData.setData(&amp;quot;Text&amp;quot;,&amp;#39;复制我呀复制我&amp;#39;);，而且历代先辈屡试不爽。但随着时代的推移我们渐渐发现，这段代码只有IE支持，Chrome就对这段代码不感冒。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="兼容所有浏览器复制功能-ZeroClipboard">
+<meta property="og:url" content="http://lsfblog.com/兼容所有浏览器复制功能-ZeroClipboard.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="问题除了IE之外的浏览器不支持js复制功能。
+
+原因上古时期流传下来的鼠标点击就能复制某段内容的代码是window.clipboardData.setData(&amp;quot;Text&amp;quot;,&amp;#39;复制我呀复制我&amp;#39;);，而且历代先辈屡试不爽。但随着时代的推移我们渐渐发现，这段代码只有IE支持，Chrome就对这段代码不感冒。">
+<meta property="og:updated_time" content="2017-01-07T08:44:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="兼容所有浏览器复制功能-ZeroClipboard">
+<meta name="twitter:description" content="问题除了IE之外的浏览器不支持js复制功能。
+
+原因上古时期流传下来的鼠标点击就能复制某段内容的代码是window.clipboardData.setData(&amp;quot;Text&amp;quot;,&amp;#39;复制我呀复制我&amp;#39;);，而且历代先辈屡试不爽。但随着时代的推移我们渐渐发现，这段代码只有IE支持，Chrome就对这段代码不感冒。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lsfblog.com/兼容所有浏览器复制功能-ZeroClipboard.html"/>
+
+
+
+
+
+  <title> 兼容所有浏览器复制功能-ZeroClipboard | 个人博客 </title>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-<body>
-<div class="blog">
-  <div class="content">
+  
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">个人博客</a>
-    </h1>
-    <p class="site-description">博客</p>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
-  <nav class="site-navigation">
-    <ul>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
-        <li><a href="/">主页</a></li>
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            主页
+          </a>
+        </li>
       
-        <li><a href="/archives">归档</a></li>
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            所有文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-contact">
+          <a href="/contact" rel="section">
+            
+            联系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/lusaifeng" rel="section">
+            
+            github
+          </a>
+        </li>
+      
+
       
     </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
-
-  
-    
-    <h3 class="article-title"><span>兼容所有浏览器复制功能-ZeroClipboard</span></h3>
-    
   
 
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/兼容所有浏览器复制功能-ZeroClipboard.html" rel="bookmark">
-        <time class="entry-date published" datetime="2015-11-06T08:26:03.000Z">
-          2015-11-06
-        </time>
-      </a>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://lsfblog.com/兼容所有浏览器复制功能-ZeroClipboard.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="lucy">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/peo.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="个人博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="个人博客" src="">
     </span>
-  </div>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                兼容所有浏览器复制功能-ZeroClipboard
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-06T16:26:03+08:00">
+                2015-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/兼容/" itemprop="url" rel="index">
+                    <span itemprop="name">兼容</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
 
 
-  
+    <div class="post-body" itemprop="articleBody">
 
-  <div class="article-content">
-    <div class="entry">
       
-        <p>asdfasfsf111</p>
+      
+
+      
+        <blockquote><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a><code>问题</code></h3><p>除了IE之外的浏览器不支持js复制功能。</p>
+</blockquote>
+<blockquote><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a><code>原因</code></h3><p>上古时期流传下来的鼠标点击就能复制某段内容的代码是<code>window.clipboardData.setData(&quot;Text&quot;,&#39;复制我呀复制我&#39;);</code>，而且历代先辈屡试不爽。但随着时代的推移我们渐渐发现，这段代码只有IE支持，Chrome就对这段代码不感冒。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a><code>解决方案</code></h3><p>首先当然是考虑用js来兼容了，不过经过我们历代先烈的无数次试验，所有前辈穷其一生都无法参透Chrome用js来实现这个功能的玄机。无奈，只能换一种方法了，他就是伟大的Flash！(感谢饿倒闭，感谢CCAV，感谢乡亲父老。。。)<br>原理就是在Flash中可以无视所有浏览器对JS的兼容性问题，统一使用flash的方法来访问、设置剪贴板（剪贴板就是操作系统中用于存放Ctrl+C复制的内容的东西）内容。这样就好了，只要浏览器支持Flash，那就能支持flash的复制到剪贴板的功能。<br>但为了“迷惑”用户（额，当然，实际上是为了保证用户体验，保持视觉效果的一致性），一般都不会专门做个绚丽的Flash按钮，写上大大的几个字：复制到剪贴板。更多情况下，我们更喜欢让这个Flash全透明，当然，即使flash透明了还是能响应鼠标的点击事件的，当然也就能复制了。<br>最终的效果就是：一个低调得不能再低调的链接、按钮、图片上，其实覆盖了一个透明的Flash按钮，当我们点击这个链接的时候，其实是点到了Flash，然后就能在用户察觉不到异常的情况下，实现了全兼容的复制功能。<br>至于怎么证明，最好的办法就是在Chrome里面鼠标右击复制按钮处，会发现弹出了Flash的右键菜单。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a><code>实例</code></h3><p>我试过好几个“剪贴板”插件，最后还是选择了ZeroClipboard。<br>需要说明的是，它并不是一个jQuery插件，只是一个纯js插件，不需求jQuery。不废话，看代码。<br>引用zeroclipboard.js我就不写了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ZeroClipboard.setDefaults( &#123; moviePath: &apos;http://wxsblog.com/assets/js/ZeroClipboard.swf&apos; &#125; );</div><div class="line"></div><div class="line">$(&apos;a.clipboard&apos;).each(function()&#123;</div><div class="line">    var clip=new ZeroClipboard($(this));</div><div class="line">    clip.on(&apos;complete&apos;,function(client,args)&#123;</div><div class="line">        console.log(args.text); //正式使用可注释掉</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>上面的JS代码用到了jQuery,不过并不是ZeroClipboard需要，而是我想简单点，批量给所有<code>&lt;a class=”clipboard”&gt;</code>的链接应用复制到剪贴板的功能。<br>1.setDefaults方法先设置这个flash文件的路径。<br>2.实例化一个zeroclipboard出来，这就够了。<br>3.如果想，还可以监听这个ZeroClipboard实例的复制完毕的事件，比如经常会有复制完成之后弹个小气泡框提示“复制成功”之类的。本例只是把复制到的内容输出到了Chrome终端。<br>JS部分完成了，接下来就是HTML代码部分了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;a href=&quot;#&quot; data-clipboard-text=&quot;我是要复制的内容&quot; class=&quot;clipboard&quot;&gt;点我</div></pre></td></tr></table></figure></p>
+<p>HTML代码部分相对简单多了，就是在普通的一个链接标签上加一个data-clipboard-text属性，属性值就是点击之后复制的内容，而且可以再任何地方放任意多个，这个就看心情了。</p>
+<blockquote><footer><strong>风雪博客-</strong><cite><a href="http://wxsblog.com/html5-css3-js/js-clipboard" target="_blank" rel="external">wxsblog.com/html5-css3-js/js-clipboard</a></cite></footer></blockquote>
 
       
     </div>
 
-  </div>
+    <div>
+      
+        
 
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/兼容-ZeroClipboard/">兼容 ZeroClipboard</a>
-    </span>
-    
-
+      
     </div>
 
-    
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/兼容/" rel="tag"># 兼容</a>
+          
+            <a href="/tags/ZeroClipboard/" rel="tag"># ZeroClipboard</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hello-world.html" rel="next" title="Hello Worl">
+                <i class="fa fa-chevron-left"></i> Hello Worl
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/CSS3若干问题小结.html" rel="prev" title="CSS3若干问题小结">
+                CSS3若干问题小结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
-</article>
 
+          
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
   
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/peo.jpeg"
+               alt="lucy" />
+          <p class="site-author-name" itemprop="name">lucy</p>
+          <p class="site-description motion-element" itemprop="description">记录工作中学习到的小知识</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
 
 
+      </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因"><span class="nav-number">2.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">4.</span> <span class="nav-text">实例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
     </main>
 
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
-    
-    &copy; 2017 lucy
-    
-  </p>
-</footer>
-    
-  </div>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lucy</span>
 </div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
 </body>
 </html>
